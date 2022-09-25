@@ -1,0 +1,8 @@
+version: '3.5'
+
+services:
+  node:
+    image: gianiaz/node:latest
+    volumes:
+      - .:/home/node/app
+#    environment:
