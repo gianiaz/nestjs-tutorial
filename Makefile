@@ -7,7 +7,7 @@ setup:
 	@docker-compose run --rm node npm install
 
 start:
-	@docker-compose run --rm --service-ports node npm run start
+	@docker-compose run --rm --service-ports node npm run start:dev
 
 docker-build-node:
 	@docker build -t ${REGISTRY}node docker/
