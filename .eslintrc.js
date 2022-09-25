@@ -2,8 +2,6 @@ module.exports = {
   extends: [
     'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
-    // ToDo: https://facile.atlassian.net/browse/SPNE-31
-    // 'facile/node',
   ],
   parser: '@typescript-eslint/parser',
   plugins: ['@typescript-eslint/eslint-plugin', '@typescript-eslint', 'import'],
