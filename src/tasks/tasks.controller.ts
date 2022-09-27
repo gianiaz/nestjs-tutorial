@@ -7,19 +7,26 @@ import {
   Patch,
   Post,
   Put,
+  Query,
 } from '@nestjs/common';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { Task } from './task.model';
 import { TasksService } from './tasks.service';
 import { NotFoundException } from '@nestjs/common';
 import { TaskUpdateDto } from './dto/task-update.dto';
+import { GetTaskFilterDto } from './dto/get-task-filter.dto';
+import { filter } from 'rxjs';
 
 @Controller('tasks')
 export class TasksController {
   constructor(private taskService: TasksService) {}
 
   @Get()
-  getAllTasks(): Task[] {
+  getTasks(@Query() filterDto: GetTaskFilterDto): Task[] {
+    if (Object.keys(filterDto).length) {
+      return this.taskService.getTaskWithFilters(filterDto);
+    }
+
     return this.taskService.getAllTasks();
   }
 

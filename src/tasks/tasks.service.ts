@@ -3,9 +3,31 @@ import { Task, TaskStatus } from './task.model';
 import { v4 as uuid4 } from 'uuid';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { TaskUpdateDto } from './dto/task-update.dto';
+import { GetTaskFilterDto } from './dto/get-task-filter.dto';
+import { filter } from 'rxjs';
 
 @Injectable()
 export class TasksService {
+  getTaskWithFilters(filterDto: GetTaskFilterDto): Task[] {
+    const { status, search } = filterDto;
+
+    let tasks = this.getAllTasks();
+
+    if (status) {
+      tasks = tasks.filter((task) => task.status === status);
+    }
+
+    if (search) {
+      tasks = tasks.filter((task) => {
+        if (task.title.includes(search) || task.description.includes(search)) {
+          return true;
+        }
+      });
+    }
+
+    return tasks;
+  }
+
   patch(id: string, prop: string, value: string): Task {
     const elem = this.findOne(id);
 
