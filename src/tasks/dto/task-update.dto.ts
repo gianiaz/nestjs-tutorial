@@ -1,5 +1,5 @@
 import { IsEnum } from 'class-validator';
-import { TaskStatus } from '../task.model';
+import { TaskStatus } from '../task-status.model';
 import { CreateTaskDto } from './create-task.dto';
 
 export class TaskUpdateDto extends CreateTaskDto {
