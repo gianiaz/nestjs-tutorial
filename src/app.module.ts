@@ -1,6 +1,9 @@
 import { Module } from '@nestjs/common';
 import { TasksModule } from './tasks/tasks.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { DataSource } from 'typeorm';
+import { Task } from './tasks/task.entity';
+
 @Module({
   imports: [
     TasksModule,
@@ -11,8 +14,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       username: 'root',
       password: 'root',
       database: 'nestjs',
-      autoLoadEntities: true,
+      entities: [Task],
+      synchronize: true,
     }),
   ],
 })
-export class AppModule {}
+export class AppModule {
+  constructor(private dataSource: DataSource) {}
+}

@@ -66,8 +66,8 @@ export class TasksController {
   //     throw new NotFoundException('Task not found');
   //   }
   // }
-  // @Post('task')
-  // createTask(@Body() createTaskDto: CreateTaskDto): Task {
-  //   return this.taskService.createTask(createTaskDto);
-  // }
+  @Post('task')
+  createTask(@Body() createTaskDto: CreateTaskDto): Promise<Task> {
+    return this.taskService.createTask(createTaskDto);
+  }
 }
